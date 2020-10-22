@@ -1,0 +1,7 @@
+version: '2'
+services:
+  dx_manager:
+    build: .
+    container_name: dx_manager
+    ports:
+      - "8080:3000"
