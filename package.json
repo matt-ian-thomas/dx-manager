@@ -4,7 +4,8 @@
   "description": "GUI for managing all things DX",
   "main": "index.js",
   "scripts": {
-    "build": "npx webpack"
+    "build": "npx webpack",
+    "dev": "docker-compose up -d"
   },
   "author": "",
   "license": "ISC",
