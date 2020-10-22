@@ -4,7 +4,7 @@
   "description": "GUI for managing all things DX",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "build": "npx webpack"
   },
   "author": "",
   "license": "ISC",
