@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@salesforce-ux/design-system": "^2.13.7",
+    "@salesforce/design-system-react": "^0.10.24",
     "classnames": "^2.2.6",
     "express": "^4.17.1",
     "moment": "^2.29.1",
