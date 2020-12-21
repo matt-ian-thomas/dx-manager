@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 
 export class Button extends Component {
 	static propTypes = {
-		variant: PropTypes.oneOf(['neutral', 'brand', 'outline-brand', 'destructive', 'text-destructive', 'success'])
+		disabled: PropTypes.bool,
+		label: PropTypes.string.isRequired,
+		onClick: PropTypes.func.isRequired,
+		stretch: PropTypes.bool,
+		variant: PropTypes.oneOf(['neutral', 'brand', 'outline-brand', 'destructive', 'text-destructive', 'success']).isRequired,
 	};
 	constructor(props, context){
 		super(props, context);
@@ -15,12 +19,14 @@ export class Button extends Component {
 			disabled,
 			label,
 			onClick,
-			variant
+			variant,
+			stretch
 		} = this.props;
 		return (
-			<button className={classNames('slds-button', `slds-button_${variant}`)}>
+			<button className={classNames('slds-button', `slds-button_${variant}`, { 'slds-button_stretch': stretch })} onClick={onClick} disabled={disabled}>
 				{label}
 			</button>
 		);
+		
 	}
 }
