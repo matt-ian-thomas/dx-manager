@@ -1,0 +1,2 @@
+export const APPLY_BACKGROUND = 'APPLY_BACKGROUND';
+export const CHANGE_INPUT = 'CHANGE_INPUT';
