@@ -33,31 +33,5 @@ app.get('/orgs', (request, response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Retrieving auth info...`);
-  exec('sfdx auth:list --json', (error, stdout, stderr) => {
-    if(error) {
-      console.log(`Error: ${error}`);
-      return;
-    }
-    else if (stderr) {
-      console.log(`Stderr: ${stderr}`);
-      return;
-    }
-    else {
-      const json = {
-        orgs: []
-      };
-      const data = JSON.parse(stdout);
-      data.result.forEach(org => {
-        json.orgs.push(org);
-      });
-      fs.writeFile('sfdx-orgs.json', JSON.stringify(json), function(err){
-        if (err) {
-          console.log(`Error: ${err}`);
-        }
-      });
-      return;
-    }
-  });
   console.log(`Listening on port ${port}`);
 });
