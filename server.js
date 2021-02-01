@@ -1,8 +1,10 @@
 const express = require('express');
-const { exec } = require('child_process');
 const fs = require('fs');
 const app = express();
 const port = 3000;
+
+// Route imports
+const orgs = require('./server/routes/orgs');
 
 app.use(express.json());
 app.use(express.static('public')); 
@@ -12,24 +14,11 @@ app.get('/', (request, response) => {
   response.sendFile('index.html');
 });
 
+// Route use statements
+app.use('/orgs', orgs);
+
 app.get('/login', (request, response) => {
   response.send('Login page'); 
-});
-
-app.get('/orgs', (request, response) => {
-  exec("sfdx force:org:list", (error, stdout, stderr) => {
-    if(error) {
-      console.log(error);
-      return;
-    }
-    else if (stderr) {
-      console.log(stderr);
-      return;
-    }
-    else {
-      return stdout;
-    }
-  });
 });
 
 app.listen(port, () => {
