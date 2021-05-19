@@ -5,6 +5,10 @@ const port = 3000;
 
 // Route imports
 const orgs = require('./server/routes/orgs');
+const login = require('./server/routes/login');
+
+const Connection = require('@salesforce/core');
+console.log(Connection);
 
 app.use(express.json());
 app.use(express.static('public')); 
@@ -16,6 +20,7 @@ app.get('/', (request, response) => {
 
 // Route use statements
 app.use('/orgs', orgs);
+app.use('/login', login);
 
 app.get('/login', (request, response) => {
   response.send('Login page'); 

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 
 //Component imports
-import {Button} from './components/button';
+import {DataTable} from './components/data-table';
 
 //Redux imports
 import {
@@ -32,7 +32,7 @@ class App extends Component {
 		return (
 			<div className="slds" style={{backgroundColor}}>
 				<input type="text" value={backgroundColorValue} onChange={this.handleInputChange} />
-				<Button label="Apply Background Color" onClick={this.handleClick} variant="brand" />
+				<DataTable></DataTable>
 			</div>
 		);
 	}
