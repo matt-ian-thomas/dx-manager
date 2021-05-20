@@ -3,7 +3,8 @@ const { exec } = require('child_process');
 const router = express.Router();
 
 router.get('/', (request, response, next) => {
-  exec("sfdx force:auth:web:login -r https://sproutsocial.my.salesforce.com", (error, stdout, stderr) => {
+  const url = '';
+  exec(`sfdx force:auth:web:login -r ${url}`, (error, stdout, stderr) => {
     if(error) {
       next(error);
     }
