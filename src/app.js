@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 
 //Component imports
-import {DataTable} from './components/data-table';
+import {Icon} from './components/icon';
 
 //Redux imports
 import {
@@ -30,9 +30,9 @@ class App extends Component {
 			backgroundColorValue
 		} = this.props;
 		return (
-			<div className="slds" style={{backgroundColor}}>
-				<input type="text" value={backgroundColorValue} onChange={this.handleInputChange} />
-				<DataTable></DataTable>
+			<div className="slds">
+				<Icon category="standard" iconName="bot"></Icon>
+				<Icon category="not-a-category" iconName="account"></Icon>
 			</div>
 		);
 	}
