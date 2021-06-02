@@ -3,10 +3,12 @@ const fs = require('fs');
 const app = express();
 const port = 3000;
 
+require('dotenv').config();
+
 // Route imports
 const orgs = require('./server/routes/orgs');
 const login = require('./server/routes/login');
-
+const load = require('./server/routes/load');
 const Connection = require('@salesforce/core');
 console.log(Connection);
 
@@ -21,10 +23,7 @@ app.get('/', (request, response) => {
 // Route use statements
 app.use('/orgs', orgs);
 app.use('/login', login);
-
-app.get('/login', (request, response) => {
-  response.send('Login page'); 
-});
+app.use('/load', load);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
