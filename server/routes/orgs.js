@@ -6,7 +6,6 @@ router.get('/', (request, response, next) => {
   sfdx.force.org.list()
     .then(orgs => {
       response.send(orgs);
-      console.log(orgs.nonScratchOrgs.length);
     })
     .catch(error => response.error(error));
 });
