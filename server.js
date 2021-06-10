@@ -8,9 +8,6 @@ require('dotenv').config();
 // Route imports
 const orgs = require('./server/routes/orgs');
 const login = require('./server/routes/login');
-const load = require('./server/routes/load');
-const Connection = require('@salesforce/core');
-console.log(Connection);
 
 app.use(express.json());
 app.use(express.static('public')); 

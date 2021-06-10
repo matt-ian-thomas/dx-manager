@@ -3,42 +3,46 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 
 //Component imports
-import {Icon} from './components/icon';
-
+import {Spinner} from './components/spinner';
 //Redux imports
 import {
-	applyBackground,
-	changeInput
+	getOrgs
 } from './ducks/actions';
 
 class App extends Component {
 	constructor(props, context){
 		super(props, context);
-
-		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleClick = this.handleClick.bind(this);
 	}
-	handleInputChange(event) {
-		this.props.dispatch(changeInput(event.target.value));
+	componentDidMount() {
+		getOrgs(this.props.dispatch);
 	}
-	handleClick() {
-		this.props.dispatch(applyBackground(this.props.backgroundColorValue));
+	renderOrg(org) {
+		return (
+			<li>{org.alias}</li>
+		);
 	}
 	render(){
 		let {
-			backgroundColor,
-			backgroundColorValue
+			loading,
+			orgs
 		} = this.props;
 		return (
 			<div className="slds">
-				<Icon category="standard" iconName="bot"></Icon>
-				<Icon category="not-a-category" iconName="account"></Icon>
+				{loading
+					? <Spinner />
+					: undefined}
+
+				<ol>
+					{orgs
+						? orgs.data.nonScratchOrgs.map(this.renderOrg)
+						: undefined}
+				</ol>
 			</div>
 		);
 	}
 }
 
 export default connect(state => ({
-	backgroundColor: state.backgroundColor,
-	backgroundColorValue: state.backgroundColorValue
+	loading: state.loading,
+	orgs: state.orgs
 }))(App);

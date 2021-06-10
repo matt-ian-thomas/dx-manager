@@ -1,19 +1,13 @@
 const express = require('express');
-const { exec } = require('child_process');
+const sfdx = require('sfdx-node/parallel');
 const router = express.Router();
 
 router.get('/', (request, response, next) => {
-  exec("sfdx force:org:list", (error, stdout, stderr) => {
-    if(error) {
-      next(error);
-    }
-    else if (stderr) {
-      next(stderr);
-    }
-    else {
-      response.send(stdout);
-    }
-  });
+  sfdx.force.org.list()
+    .then(orgs => {
+      response.send(orgs);
+    })
+    .catch(error => response.error(error));
 });
 
 module.exports = router;

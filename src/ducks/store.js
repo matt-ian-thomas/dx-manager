@@ -2,7 +2,9 @@ import {createStore, applyMiddleware} from 'redux';
 
 import {
   APPLY_BACKGROUND,
-  CHANGE_INPUT
+  CHANGE_INPUT,
+  IS_LOADING,
+  SET_ORGS
 } from './action-types';
 
 const logger = store => next => action => {
@@ -33,6 +35,10 @@ function reducer(state = {}, action) {
       return Object.assign({}, state, { backgroundColor: action.payload });
     case CHANGE_INPUT:
       return Object.assign({}, state, { backgroundColorValue: action.payload });
+    case IS_LOADING:
+      return Object.assign({}, state, { loading: action.payload });
+    case SET_ORGS:
+      return Object.assign({}, state, { orgs: action.payload });
     default:
       return state
   }
@@ -40,8 +46,7 @@ function reducer(state = {}, action) {
 
 export default createStore(reducer, {
     // This is the default state.
-    backgroundColor: 'lightgrey',
-    backgroundColorValue: ''
+    loading: false
 	},
 	applyMiddleware(logger, crashReporter)
 );
