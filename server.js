@@ -20,7 +20,6 @@ app.get('/', (request, response) => {
 // Route use statements
 app.use('/orgs', orgs);
 app.use('/login', login);
-app.use('/load', load);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

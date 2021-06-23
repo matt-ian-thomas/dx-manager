@@ -1,0 +1,29 @@
+{
+    "edition": "Enterprise",
+    "features": [
+        "API",
+        "Communities",
+        "CPQ",
+        "DebugApex",
+        "Sites",
+        "StateAndCountryPicklist"
+    ],
+    "orgName": "Development",
+    "settings": {
+        "contractSettings": {
+            "autoCalculateEndDate": false
+        },
+        "forecastingSettings": {
+            "enableForecasts": true
+        },
+        "mobileSettings": {
+            "enableS1EncryptedStoragePref2": false
+        },
+        "opportunitySettings": {
+            "enableOpportunityTeam": true
+        },
+        "quoteSettings": {
+            "enableQuote": true
+        }
+    }
+}

@@ -7,7 +7,7 @@ import {Spinner} from './components/spinner';
 import {DataTable} from './components/data-table';
 //Redux imports
 import {
-	getOrgs
+	getOrgs,
 } from './ducks/actions';
 
 class App extends Component {
@@ -30,6 +30,10 @@ class App extends Component {
 
 				{orgs
 					? <DataTable columns={['alias', 'username']} data={orgs.data.nonScratchOrgs}/>
+					: undefined}
+				
+				{orgs
+					? <DataTable columns={['alias', 'username', 'expirationDate']} data={orgs.data.scratchOrgs}/>
 					: undefined}
 			</div>
 		);

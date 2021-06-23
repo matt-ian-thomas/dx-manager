@@ -43,7 +43,7 @@ export class DataTable extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					{data.map(this.renderRow.bind)}
+					{data.map(this.renderRow.bind(this))}
 				</tbody>
 			</table>
 		);

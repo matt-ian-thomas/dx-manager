@@ -35,6 +35,19 @@ export function getOrgs(dispatch) {
 		.finally(() => dispatch(isLoading(false)));
 }
 
+export function createOrg(dispatch) {
+	dispatch(isLoading(true));
+
+	axios.post('/orgs')
+		.then(org => {
+			getOrgs(dispatch);
+		})
+		.catch(error => {
+			console.error(error);
+			dispatch(isLoading(false));
+		});
+}
+
 export function isLoading(value) {
 	return {
 		type: IS_LOADING,
