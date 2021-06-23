@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 //Component imports
 import {Spinner} from './components/spinner';
+import {DataTable} from './components/data-table';
 //Redux imports
 import {
 	getOrgs
@@ -16,11 +17,6 @@ class App extends Component {
 	componentDidMount() {
 		getOrgs(this.props.dispatch);
 	}
-	renderOrg(org) {
-		return (
-			<li>{org.alias}</li>
-		);
-	}
 	render(){
 		let {
 			loading,
@@ -32,11 +28,9 @@ class App extends Component {
 					? <Spinner />
 					: undefined}
 
-				<ol>
-					{orgs
-						? orgs.data.nonScratchOrgs.map(this.renderOrg)
-						: undefined}
-				</ol>
+				{orgs
+					? <DataTable columns={['alias', 'username']} data={orgs.data.nonScratchOrgs}/>
+					: undefined}
 			</div>
 		);
 	}
