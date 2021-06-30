@@ -5,9 +5,11 @@ import classNames from 'classnames';
 //Component imports
 import {Spinner} from './components/spinner';
 import {DataTable} from './components/data-table';
+import {Card} from './components/card';
 //Redux imports
 import {
 	getOrgs,
+	createOrg
 } from './ducks/actions';
 
 class App extends Component {
@@ -22,6 +24,12 @@ class App extends Component {
 			loading,
 			orgs
 		} = this.props;
+		let nonScratchOrgBody = orgs ? <DataTable columns={['alias', 'username']} data={orgs.data.nonScratchOrgs} /> : undefined;
+		let scratchOrgBody = orgs ? <DataTable columns={['alias', 'username', 'expirationDate']} data={orgs.data.scratchOrgs} /> : undefined;
+		let newScratchOrgButton = {
+			label: "New Scratch Org",
+			func: createOrg({ name:"testTitle"})
+		};
 		return (
 			<div className="slds">
 				{loading
@@ -29,12 +37,13 @@ class App extends Component {
 					: undefined}
 
 				{orgs
-					? <DataTable columns={['alias', 'username']} data={orgs.data.nonScratchOrgs}/>
+					? <Card header="Non Scratch Orgs" body={nonScratchOrgBody} iconName="archive" iconCategory="utility" /> 
 					: undefined}
-				
+
 				{orgs
-					? <DataTable columns={['alias', 'username', 'expirationDate']} data={orgs.data.scratchOrgs}/>
+					? <Card header="Scratch Orgs" body={scratchOrgBody} iconName="archive" iconCategory="utility" buttons={[newScratchOrgButton]} /> 
 					: undefined}
+
 			</div>
 		);
 	}

@@ -35,10 +35,9 @@ export function getOrgs(dispatch) {
 		.finally(() => dispatch(isLoading(false)));
 }
 
-export function createOrg(dispatch) {
+export function createOrg(dispatch, name) {
 	dispatch(isLoading(true));
-
-	axios.post('/orgs')
+	axios.post('/orgs', { title: name })
 		.then(org => {
 			getOrgs(dispatch);
 		})
