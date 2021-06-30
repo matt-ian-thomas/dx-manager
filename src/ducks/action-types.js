@@ -3,3 +3,4 @@ export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const GET_ORGS = 'GET_ORGS';
 export const IS_LOADING = 'IS_LOADING';
 export const SET_ORGS = 'SET_ORGS';
+export const SHOW_MODAL = 'SHOW_MODAL';

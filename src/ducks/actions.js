@@ -3,7 +3,8 @@ import {
 	CHANGE_INPUT,
 	GET_ORGS,
 	IS_LOADING,
-	SET_ORGS
+	SET_ORGS,
+	SHOW_MODAL
 } from './action-types';
 
 import axios from 'axios';
@@ -57,6 +58,13 @@ export function isLoading(value) {
 export function setOrgs(value) {
 	return {
 		type: SET_ORGS,
+		payload: value
+	};
+}
+
+export function showModal(value) {
+	return {
+		type: SHOW_MODAL,
 		payload: value
 	};
 }

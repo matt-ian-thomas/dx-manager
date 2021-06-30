@@ -4,7 +4,8 @@ import {
   APPLY_BACKGROUND,
   CHANGE_INPUT,
   IS_LOADING,
-  SET_ORGS
+  SET_ORGS,
+  SHOW_MODAL
 } from './action-types';
 
 const logger = store => next => action => {
@@ -39,8 +40,10 @@ function reducer(state = {}, action) {
       return Object.assign({}, state, { loading: action.payload });
     case SET_ORGS:
       return Object.assign({}, state, { orgs: action.payload });
+    case SHOW_MODAL:
+      return Object.assign({}, state, { modals : { [action.payload]: true }});
     default:
-      return state
+      return state;
   }
 }
 
