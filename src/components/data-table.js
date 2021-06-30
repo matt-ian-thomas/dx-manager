@@ -9,22 +9,22 @@ export class DataTable extends Component {
 	constructor(props, context){
 		super(props, context);
 	}
-	renderColumn(column) {
+	renderColumn(column, index) {
 		return (
-			<th scope="col">
+			<th scope="col" key={index}>
 				<div className="slds-truncate" title={column}>
 					{column}
 				</div>
 			</th>
 		);
 	}
-	renderRow(row) {
+	renderRow(row, index) {
 		let cells = [];
-		this.props.columns.forEach(column => {
-			cells.push(<td>{row[column]}</td>)
+		this.props.columns.forEach((column, i) => {
+			cells.push(<td key={i}>{row[column]}</td>)
 		});
 		return (
-			<tr>
+			<tr key={index}>
 				{cells}
 			</tr>
 		);

@@ -14,50 +14,38 @@ export class Card extends Component {
 		super(props, context);
 	}
 
-	renderButtons(buttons) {
-		let allButtons = [];
-		buttons.forEach(button => {
-			allButtons.push(<Button label={button.label} onClick={button.func} variant="neutral" />);
-		});
-
-		return allButtons;
-	}
-
 	render(){
 		let {
 			header,
-			body,
+			children,
 			iconName,
 			iconCategory,
 			buttons
 		} = this.props;
 
-		let allButtons = buttons ? this.renderButtons(buttons) : undefined;
 		return (
-			<article class="slds-card">
-				<div class="slds-card__header slds-grid">
-					<header class="slds-media slds-media_center slds-has-flexi-truncate">
-						<div class="slds-media__figure">
-							<span class="slds-icon_container slds-icon-standard-account" title="account">
+			<article className="slds-card">
+				<div className="slds-card__header slds-grid">
+					<header className="slds-media slds-media_center slds-has-flexi-truncate">
+						<div className="slds-media__figure">
+							<span className="slds-icon_container slds-icon-standard-account" title="account">
 								<Icon iconName={iconName} category={iconCategory} />
-								<span class="slds-assistive-text">{header}</span>
+								<span className="slds-assistive-text">{header}</span>
 							</span>
 						</div>
-						<div class="slds-media__body">
-							<h2 class="slds-card__header-title">
-								<a href="#" class="slds-card__header-link slds-truncate" title="Accounts">
+						<div className="slds-media__body">
+							<h2 className="slds-card__header-title">
+								<a href="#" className="slds-card__header-link slds-truncate" title="Accounts">
 									<span>{header}</span>
 								</a>
 							</h2>
 						</div>
-						<div class="slds-no-flex">
-						{allButtons ? 
-							allButtons
-							: undefined}
+						<div className="slds-no-flex">
+							Buttons
 						</div>
 					</header>
 				</div>
-				<div class="slds-card__body slds-card__body_inner">{body}</div>
+				<div className="slds-card__body slds-card__body_inner">{children}</div>
 			</article>
 		);
 	}

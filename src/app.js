@@ -24,26 +24,21 @@ class App extends Component {
 			loading,
 			orgs
 		} = this.props;
-		let nonScratchOrgBody = orgs ? <DataTable columns={['alias', 'username']} data={orgs.data.nonScratchOrgs} /> : undefined;
-		let scratchOrgBody = orgs ? <DataTable columns={['alias', 'username', 'expirationDate']} data={orgs.data.scratchOrgs} /> : undefined;
-		let newScratchOrgButton = {
-			label: "New Scratch Org",
-			func: createOrg({ name:"testTitle"})
-		};
 		return (
 			<div className="slds">
 				{loading
 					? <Spinner />
 					: undefined}
-
 				{orgs
-					? <Card header="Non Scratch Orgs" body={nonScratchOrgBody} iconName="archive" iconCategory="utility" /> 
+					? <div> 
+						  <Card header="Non Scratch Orgs" iconName="archive" iconCategory="utility">
+							  <DataTable columns={['alias', 'username']} data={orgs.data.nonScratchOrgs} />
+						  </Card> 
+						  <Card header="Scratch Orgs" iconName="archive" iconCategory="utility">
+							 <DataTable columns={['alias', 'username']} data={orgs.data.scratchOrgs} />
+						  </Card>
+					  </div>
 					: undefined}
-
-				{orgs
-					? <Card header="Scratch Orgs" body={scratchOrgBody} iconName="archive" iconCategory="utility" buttons={[newScratchOrgButton]} /> 
-					: undefined}
-
 			</div>
 		);
 	}
