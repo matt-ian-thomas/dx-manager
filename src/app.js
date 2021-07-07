@@ -7,11 +7,13 @@ import {Spinner} from './components/spinner';
 import {DataTable} from './components/data-table';
 import {Card} from './components/card';
 import {Button} from './components/button';
+import {Modal} from './components/modal';
 
 //Redux imports
 import {
 	getOrgs,
 	createOrg,
+	hideModal,
 	showModal
 } from './ducks/actions';
 
@@ -20,12 +22,16 @@ class App extends Component {
 		super(props, context);
 
 		this.handleCreateOrg = this.handleCreateOrg.bind(this);
+		this.handleCloseCreateOrg = this.handleCloseCreateOrg.bind(this);
 	}
 	componentDidMount() {
 		getOrgs(this.props.dispatch);
 	}
 	handleCreateOrg() {
 		this.props.dispatch(showModal('createOrg'));
+	}
+	handleCloseCreateOrg() {
+		this.props.dispatch(hideModal('createOrg'));
 	}
 	render(){
 		let {
@@ -43,12 +49,16 @@ class App extends Component {
 						  <Card header="Non Scratch Orgs" iconName="archive" iconCategory="utility">
 							  <DataTable columns={['alias', 'username']} data={orgs.data.nonScratchOrgs} />
 						  </Card> 
-						  <Card header="Scratch Orgs" iconName="archive" iconCategory="utility" buttons={<Button label="Create Scratch Org" variant="brand" onClick={this.handleCreateOrg}/>}>
+						  <Card header="Scratch Orgs" iconName="archive" iconCategory="utility" buttons={[<Button key="1" label="Create Scratch Org" variant="brand" onClick={this.handleCreateOrg}/>]}>
 							 <DataTable columns={['alias', 'username']} data={orgs.data.scratchOrgs} />
 						  </Card>
 					  </div>
 					: undefined}
-				{modals && modals.createOrg ? 'Create Org Modal' : undefined}
+				{modals && modals.createOrg
+					? <Modal header="Create Scratch Org" handleClose={this.handleCloseCreateOrg}>
+
+					  </Modal>
+					: undefined}
 			</div>
 		);
 	}

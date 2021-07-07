@@ -3,6 +3,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {
   APPLY_BACKGROUND,
   CHANGE_INPUT,
+  HIDE_MODAL,
   IS_LOADING,
   SET_ORGS,
   SHOW_MODAL
@@ -36,12 +37,14 @@ function reducer(state = {}, action) {
       return Object.assign({}, state, { backgroundColor: action.payload });
     case CHANGE_INPUT:
       return Object.assign({}, state, { backgroundColorValue: action.payload });
+    case HIDE_MODAL:
+      return Object.assign({}, state, { modals : { ...state.modals, [action.payload]: false }});
     case IS_LOADING:
       return Object.assign({}, state, { loading: action.payload });
     case SET_ORGS:
       return Object.assign({}, state, { orgs: action.payload });
     case SHOW_MODAL:
-      return Object.assign({}, state, { modals : { [action.payload]: true }});
+      return Object.assign({}, state, { modals : { ...state.modals, [action.payload]: true }});
     default:
       return state;
   }

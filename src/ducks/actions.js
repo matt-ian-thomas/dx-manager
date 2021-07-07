@@ -2,6 +2,7 @@ import {
 	APPLY_BACKGROUND,
 	CHANGE_INPUT,
 	GET_ORGS,
+	HIDE_MODAL,
 	IS_LOADING,
 	SET_ORGS,
 	SHOW_MODAL
@@ -65,6 +66,13 @@ export function setOrgs(value) {
 export function showModal(value) {
 	return {
 		type: SHOW_MODAL,
+		payload: value
+	};
+}
+
+export function hideModal(value) {
+	return {
+		type: HIDE_MODAL,
 		payload: value
 	};
 }
