@@ -33,10 +33,8 @@ const crashReporter = store => next => action => {
 
 function reducer(state = {}, action) {
   switch (action.type) {
-    case APPLY_BACKGROUND:
-      return Object.assign({}, state, { backgroundColor: action.payload });
     case CHANGE_INPUT:
-      return Object.assign({}, state, { backgroundColorValue: action.payload });
+      return Object.assign({}, state, { inputs : { ... state.inputs, [action.inputId]: action.payload }});
     case HIDE_MODAL:
       return Object.assign({}, state, { modals : { ...state.modals, [action.payload]: false }});
     case IS_LOADING:
@@ -52,7 +50,8 @@ function reducer(state = {}, action) {
 
 export default createStore(reducer, {
     // This is the default state.
-    loading: false
+    loading: false,
+    inputs: {} 
 	},
 	applyMiddleware(logger, crashReporter)
 );

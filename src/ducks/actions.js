@@ -10,16 +10,10 @@ import {
 
 import axios from 'axios';
 
-export function applyBackground(value) {
-	return {
-		type: APPLY_BACKGROUND,
-		payload: value
-	};
-}
-
-export function changeInput(value) {
+export function changeInput(inputId, value) {
 	return {
 		type: CHANGE_INPUT,
+		inputId: inputId,
 		payload: value
 	};
 }

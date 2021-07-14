@@ -8,12 +8,14 @@ import {DataTable} from './components/data-table';
 import {Card} from './components/card';
 import {Button} from './components/button';
 import {Modal} from './components/modal';
+import Input from './components/input';
 
 //Redux imports
 import {
 	getOrgs,
 	createOrg,
 	hideModal,
+	changeInput,
 	showModal
 } from './ducks/actions';
 
@@ -32,6 +34,8 @@ class App extends Component {
 	}
 	handleCloseCreateOrg() {
 		this.props.dispatch(hideModal('createOrg'));
+		this.props.dispatch(changeInput('alias', ''));
+		this.props.dispatch(changeInput('duration', ''));
 	}
 	render(){
 		let {
@@ -56,7 +60,8 @@ class App extends Component {
 					: undefined}
 				{modals && modals.createOrg
 					? <Modal header="Create Scratch Org" handleClose={this.handleCloseCreateOrg}>
-
+						<Input inputId="alias" label="Alias" type="text" />
+						<Input inputId="duration" label="Duration" type="number" />
 					  </Modal>
 					: undefined}
 			</div>
