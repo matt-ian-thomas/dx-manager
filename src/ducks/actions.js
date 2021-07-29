@@ -31,10 +31,12 @@ export function getOrgs(dispatch) {
 		.finally(() => dispatch(isLoading(false)));
 }
 
-export function createOrg(dispatch, name) {
+export function createOrg(dispatch, alias, duration) {
 	dispatch(isLoading(true));
-	axios.post('/orgs', { title: name })
+	axios.post('/orgs', {alias})
 		.then(org => {
+			console.log(org);
+			dispatch(hideModal("createOrg"));
 			getOrgs(dispatch);
 		})
 		.catch(error => {

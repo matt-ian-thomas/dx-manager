@@ -25,6 +25,7 @@ class App extends Component {
 
 		this.handleCreateOrg = this.handleCreateOrg.bind(this);
 		this.handleCloseCreateOrg = this.handleCloseCreateOrg.bind(this);
+		this.handleSaveCreateOrg = this.handleSaveCreateOrg.bind(this);
 	}
 	componentDidMount() {
 		getOrgs(this.props.dispatch);
@@ -33,10 +34,22 @@ class App extends Component {
 		this.props.dispatch(showModal('createOrg'));
 	}
 	handleCloseCreateOrg() {
-		this.props.dispatch(hideModal('createOrg'));
-		this.props.dispatch(changeInput('alias', ''));
-		this.props.dispatch(changeInput('duration', ''));
+		let {
+			dispatch
+		} = this.props
+		dispatch(hideModal('createOrg'));
+		dispatch(changeInput('alias', ''));
+		dispatch(changeInput('duration', ''));
 	}
+	handleSaveCreateOrg() {
+		let {
+			dispatch,
+			inputs
+		} = this.props
+
+		createOrg(dispatch, inputs.alias, inputs.duration);
+	}
+
 	render(){
 		let {
 			loading,
@@ -59,7 +72,7 @@ class App extends Component {
 					  </div>
 					: undefined}
 				{modals && modals.createOrg
-					? <Modal header="Create Scratch Org" handleClose={this.handleCloseCreateOrg}>
+					? <Modal header="Create Scratch Org" handleClose={this.handleCloseCreateOrg} buttons={[<Button key="1" label="Save" varient="brand" onClick={this.handleSaveCreateOrg}/>]}>
 						<Input inputId="alias" label="Alias" type="text" />
 						<Input inputId="duration" label="Duration" type="number" />
 					  </Modal>
@@ -70,6 +83,7 @@ class App extends Component {
 }
 
 export default connect(state => ({
+	inputs: state.inputs,
 	loading: state.loading,
 	modals: state.modals,
 	orgs: state.orgs

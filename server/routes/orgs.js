@@ -14,6 +14,8 @@ router.get('/', (request, response, next) => {
 });
 
 router.post('/', (request, response, next) => {
+  console.log(request.body);
+  console.log(scratchOrgConfig);
   sfdx.force.org.create({
     setalias: request.body.alias,
     definitionfile: scratchOrgConfig
