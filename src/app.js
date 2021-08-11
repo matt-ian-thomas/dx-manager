@@ -58,15 +58,15 @@ class App extends Component {
 		} = this.props;
 		return (
 			<div className="slds">
-				{loading
+				{loading.global 
 					? <Spinner />
 					: undefined}
 				{orgs
 					? <div> 
-						  <Card header="Non Scratch Orgs" iconName="archive" iconCategory="utility">
+						  <Card header="Non Scratch Orgs" iconName="archive" loading={loading.nonScratchOrgs} iconCategory="utility">
 							  <DataTable columns={['alias', 'username']} data={orgs.data.nonScratchOrgs} />
 						  </Card> 
-						  <Card header="Scratch Orgs" iconName="archive" iconCategory="utility" buttons={[<Button key="1" label="Create Scratch Org" variant="brand" onClick={this.handleCreateOrg}/>]}>
+						  <Card header="Scratch Orgs" iconName="archive" iconCategory="utility" loading={loading.scratchOrgs} buttons={[<Button key="1" label="Create Scratch Org" variant="brand" onClick={this.handleCreateOrg}/>]}>
 							 <DataTable columns={['alias', 'username']} data={orgs.data.scratchOrgs} />
 						  </Card>
 					  </div>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import {Icon} from './icon';
 import {Button} from './button';
+import {Spinner} from './spinner';
 
 export class Card extends Component {
 	static propTypes = {
@@ -19,11 +20,13 @@ export class Card extends Component {
 			children,
 			iconName,
 			iconCategory,
-			buttons
+			buttons,
+			loading
 		} = this.props;
 
 		return (
 			<article className="slds-card">
+				{loading ? <Spinner /> : undefined}
 				<div className="slds-card__header slds-grid">
 					<header className="slds-media slds-media_center slds-has-flexi-truncate">
 						<div className="slds-media__figure">

@@ -19,8 +19,7 @@ export function changeInput(inputId, value) {
 }
 
 export function getOrgs(dispatch) {
-	dispatch(isLoading(true));
-
+	dispatch(isLoading(true, 'nonScratchOrgs', 'scratchOrgs'));
 	axios.get('/orgs')
 		.then(orgs => {
 			dispatch(setOrgs(orgs));
@@ -28,11 +27,11 @@ export function getOrgs(dispatch) {
 		.catch(error => {
 			console.error(error);
 		})
-		.finally(() => dispatch(isLoading(false)));
+		.finally(() => dispatch(isLoading(false, 'nonScratchOrgs', 'scratchOrgs')));
 }
 
 export function createOrg(dispatch, alias, duration) {
-	dispatch(isLoading(true));
+	dispatch(isLoading(true, 'scratchOrgs'));
 	axios.post('/orgs', {alias})
 		.then(org => {
 			console.log(org);
@@ -41,14 +40,23 @@ export function createOrg(dispatch, alias, duration) {
 		})
 		.catch(error => {
 			console.error(error);
-			dispatch(isLoading(false));
+			dispatch(isLoading(false, 'scratchOrgs'));
 		});
 }
 
-export function isLoading(value) {
+export function isLoading(value, scope='global', ...scopes) {
+	let payload = { 
+		[scope] : value
+	};
+
+	if (scopes) {	
+		scopes.forEach(name => {
+			payload[name] = value
+		});
+	}
 	return {
 		type: IS_LOADING,
-		payload: value
+		payload
 	};
 }
 

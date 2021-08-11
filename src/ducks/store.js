@@ -38,7 +38,7 @@ function reducer(state = {}, action) {
     case HIDE_MODAL:
       return Object.assign({}, state, { modals : { ...state.modals, [action.payload]: false }});
     case IS_LOADING:
-      return Object.assign({}, state, { loading: action.payload });
+      return Object.assign({}, state, { loading: { ...state.loading, ...action.payload }});
     case SET_ORGS:
       return Object.assign({}, state, { orgs: action.payload });
     case SHOW_MODAL:
@@ -50,7 +50,7 @@ function reducer(state = {}, action) {
 
 export default createStore(reducer, {
     // This is the default state.
-    loading: false,
+    loading: { global : false},
     inputs: {} 
 	},
 	applyMiddleware(logger, crashReporter)

@@ -9,10 +9,12 @@ export class Spinner extends Component {
 	render(){
 		return (
 			<div>
-				<div role="status" className="slds-spinner slds-spinner_medium">
-					<div className="slds-spinner__dot-a"></div>
-					<div className="slds-spinner__dot-b"></div>
-				</div>
+				<div className="slds-spinner_container">
+					<div role="status" className="slds-spinner slds-spinner_medium">
+						<div className="slds-spinner__dot-a"></div>
+						<div className="slds-spinner__dot-b"></div>
+					</div>
+				</div>	
 			</div>
 		);
 		

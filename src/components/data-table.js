@@ -9,6 +9,9 @@ export class DataTable extends Component {
 	constructor(props, context){
 		super(props, context);
 	}
+	handleRowClick(event) {
+		console.log(event.target);
+	}
 	renderColumn(column, index) {
 		return (
 			<th scope="col" key={index}>
@@ -24,7 +27,7 @@ export class DataTable extends Component {
 			cells.push(<td key={i}>{row[column]}</td>)
 		});
 		return (
-			<tr key={index}>
+			<tr key={index} onClick={this.handleRowClick(index)}>
 				{cells}
 			</tr>
 		);
@@ -38,7 +41,7 @@ export class DataTable extends Component {
 		return (
 			<table className={classNames('slds-table', 'slds-table_cell-buffer', 'slds-table_bordered')}>
 				<thead>
-					<tr className="slds-line-height_reset">
+					<tr className="slds-line-height_reset" >
 						{columns.map(this.renderColumn)}
 					</tr>
 				</thead>
