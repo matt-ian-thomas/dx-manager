@@ -6,7 +6,8 @@ import {
   HIDE_MODAL,
   IS_LOADING,
   SET_ORGS,
-  SHOW_MODAL
+  SHOW_MODAL,
+  TOGGLE_DROP_DOWN
 } from './action-types';
 
 const logger = store => next => action => {
@@ -43,6 +44,8 @@ function reducer(state = {}, action) {
       return Object.assign({}, state, { orgs: action.payload });
     case SHOW_MODAL:
       return Object.assign({}, state, { modals : { ...state.modals, [action.payload]: true }});
+    case TOGGLE_DROP_DOWN:
+      return Object.assign({}, state, { dropdowns: { ...state.dropdowns, [action.payload.key]: state.dropdowns[action.payload.key] === action.payload.index ? undefined : action.payload.index}})
     default:
       return state;
   }
@@ -50,6 +53,7 @@ function reducer(state = {}, action) {
 
 export default createStore(reducer, {
     // This is the default state.
+    dropdowns: {},
     loading: { global : false},
     inputs: {} 
 	},

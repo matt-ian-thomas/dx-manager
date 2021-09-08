@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 //Component imports
 import {Spinner} from './components/spinner';
-import {DataTable} from './components/data-table';
+import DataTable from './components/data-table';
 import {Card} from './components/card';
 import {Button} from './components/button';
 import {Modal} from './components/modal';
@@ -64,10 +64,10 @@ class App extends Component {
 				{orgs
 					? <div> 
 						  <Card header="Non Scratch Orgs" iconName="archive" loading={loading.nonScratchOrgs} iconCategory="utility">
-							  <DataTable columns={['alias', 'username']} data={orgs.data.nonScratchOrgs} />
+							  <DataTable id="nonScratchOrgs" columns={['alias', 'username']} data={orgs.data.nonScratchOrgs} />
 						  </Card> 
 						  <Card header="Scratch Orgs" iconName="archive" iconCategory="utility" loading={loading.scratchOrgs} buttons={[<Button key="1" label="Create Scratch Org" variant="brand" onClick={this.handleCreateOrg}/>]}>
-							 <DataTable columns={['alias', 'username']} data={orgs.data.scratchOrgs} />
+							 <DataTable id="scratchOrgs" columns={['alias', 'username']} data={orgs.data.scratchOrgs} />
 						  </Card>
 					  </div>
 					: undefined}

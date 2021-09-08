@@ -5,3 +5,4 @@ export const HIDE_MODAL = 'HIDE_MODAL';
 export const IS_LOADING = 'IS_LOADING';
 export const SET_ORGS = 'SET_ORGS';
 export const SHOW_MODAL = 'SHOW_MODAL';
+export const TOGGLE_DROP_DOWN = 'TOGGLE_DROP_DOWN';

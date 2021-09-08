@@ -5,7 +5,8 @@ import {
 	HIDE_MODAL,
 	IS_LOADING,
 	SET_ORGS,
-	SHOW_MODAL
+	SHOW_MODAL,
+	TOGGLE_DROP_DOWN
 } from './action-types';
 
 import axios from 'axios';
@@ -79,4 +80,13 @@ export function hideModal(value) {
 		type: HIDE_MODAL,
 		payload: value
 	};
+}
+
+export function toggleDropDown(key, index) {
+	return {
+		type: TOGGLE_DROP_DOWN,
+		payload: {
+			key, index
+		}
+	}
 }

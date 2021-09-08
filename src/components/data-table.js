@@ -1,13 +1,23 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export class DataTable extends Component {
+import {Icon} from './icon';
+import {Menu} from './menu';
+
+import {toggleDropDown} from '../ducks/actions';
+
+class DataTable extends Component {
 	static propTypes = {
-		columns: PropTypes.arrayOf(PropTypes.string).isRequired
+		columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+		id: PropTypes.string.isRequired
 	};
 	constructor(props, context){
 		super(props, context);
+	}
+	handleRowDropDownClick(index) {
+		this.props.dispatch(toggleDropDown(this.props.id, index));
 	}
 	handleRowClick(event) {
 		console.log(event.target);
@@ -26,6 +36,14 @@ export class DataTable extends Component {
 		this.props.columns.forEach((column, i) => {
 			cells.push(<td key={i}>{row[column]}</td>)
 		});
+		cells.push(
+			<td role="gridcell">
+				<button onClick={this.handleRowDropDownClick.bind(this, index)} className="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small">
+					<Icon category="utility" iconName="down" size="x-small"/>
+				</button>
+				{this.props.dropdown === index ? <Menu /> : undefined}
+			</td>
+		);
 		return (
 			<tr key={index} onClick={this.handleRowClick(index)}>
 				{cells}
@@ -53,3 +71,7 @@ export class DataTable extends Component {
 		
 	}
 }
+
+export default connect((state, props) => ({
+	dropdown: state.dropdowns[props.id]
+}))(DataTable);
